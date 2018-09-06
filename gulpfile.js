@@ -9,6 +9,7 @@ const uglify    = require("gulp-uglify");
 const cleancss  = require("gulp-clean-css");
 const sass      = require("gulp-sass");
 const merge     = require("merge-stream");
+const clean     = require("gulp-clean");
 
 const folder = {
     src: "src/",
@@ -67,6 +68,12 @@ gulp.task('sass', function() {
     return gulp.src(folder.src + "scss/**/*.scss")
         .pipe(sass())
         .pipe(gulp.dest(folder.src + "css/"));
+});
+
+/* Städa upp */
+gulp.task("clean", function() {
+    return gulp.src("pub/", { read: false })
+        .pipe(clean());
 });
 
 /* Kör allting */

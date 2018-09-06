@@ -36,7 +36,7 @@ gulp.task("html", ['images'], function() {
 
 /* JavaScript */
 gulp.task("js", function() {
-    return gulp.src(folder.src + "js/**/*")
+    return gulp.src(folder.src + "js/**/*.js")
         .pipe(concat("main.js"))
         .pipe(uglify())
         .pipe(gulp.dest(folder.build + "js/"));

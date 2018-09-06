@@ -37,7 +37,7 @@ gulp.task("html", ['images'], function() {
 /* JavaScript */
 gulp.task("js", function() {
     return gulp.src(folder.src + "js/**/*.js")
-        .pipe(concat("main.js"))
+        .pipe(concat("main.min.js"))
         .pipe(uglify())
         .pipe(gulp.dest(folder.build + "js/"));
 });
@@ -52,7 +52,7 @@ gulp.task("css", function() {
     cssStream = gulp.src(folder.src + "css/**/*.css");
 
     return merge(sassStream, cssStream)
-        .pipe(concat('style.css'))
+        .pipe(concat('style.min.css'))
         .pipe(cleancss())
         .pipe(gulp.dest(folder.build + "css/"));
 

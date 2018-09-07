@@ -10,6 +10,7 @@ const cleancss  = require("gulp-clean-css");
 const sass      = require("gulp-sass");
 const merge     = require("merge-stream");
 const clean     = require("gulp-clean");
+const watch     = require("gulp-watch");
 
 const folder = {
     src: "src/",
@@ -81,11 +82,24 @@ gulp.task("run", ['html', 'css', 'js']);
 
 /* Kolla efter changes */
 gulp.task('watch', function() {
-    gulp.watch(folder.src + "images/**/*", ['images']);
-    gulp.watch(folder.src + "**/*.html", ['html']);
-    gulp.watch(folder.src + "js/**/*", ['js'])
-    gulp.watch(folder.src + "css/**/*.css", ['css']);
-    gulp.watch(folder.src + "scss/**/*.scss", ['css']);
+    
+    //gulp.watch(folder.src + "images/**/*", ['images']);
+    //gulp.watch(folder.src + "**/*.html", ['html']);
+    //gulp.watch(folder.src + "js/**/*", ['js'])
+    //gulp.watch(folder.src + "css/**/*.css", ['css']);
+    //gulp.watch(folder.src + "scss/**/*.scss", ['css']);
+    watch(folder.src + "images/**/*", function () {
+        gulp.start('images');
+    });
+    watch(folder.src + "**/*.html", function () {
+        gulp.start('html');
+    });
+    watch(folder.src + "js/**/*", function () {
+        gulp.start('js');
+    });
+    watch([folder.src + "css/**/*.css", folder.src + "scss/**/*.scss"], function () {
+        gulp.start('css');
+    });
 });
 
 gulp.task('default', ['run', 'watch']);
